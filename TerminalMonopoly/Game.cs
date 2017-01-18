@@ -212,11 +212,37 @@ namespace TerminalMonopoly
                     PaidSpace rentedUtility = (PaidSpace)currentSpace;
                     if (rentedUtility.OwnedBy != Player.None && rentedUtility.OwnedBy != player)
                     {
-                        if()
+                        int urent;
+                        if (ownsGroup(rentedUtility.OwnedBy, "utilities"))
+                            urent = 10 * diceAmount;
+                        else
+                            urent = 4 * diceAmount;
+                        player.takeMoney(urent);
+
                         rentedUtility.OwnedBy.addMoney(rentedUtility.Price);
                     }
                     break;
 
+            }
+        }
+        private bool ownsGroup(Player player, string group)
+        {
+            Queue<PaidSpace> inGroup = new Queue<PaidSpace>();
+            PaidSpace currentSpace = (PaidSpace)spaces[board[player.Position]];
+            foreach (KeyValuePair<string,Space> s in spaces)
+            {
+                Space space = s.Value;
+                switch(group)
+                {
+                    case "property":
+                        Property prop = (Property)space;
+                        Property curProp = (Property)currentSpace;
+                        if (prop.Color.Equals(curProp.Color))
+                        {
+                            inGroup.Enqueue(space);
+                        }
+                        break;
+                }
             }
         }
     }

@@ -42,7 +42,7 @@ namespace TerminalMonopoly
                 position = value % 40;
             }
         }
-
+        public bool Jailed { get; set; }
         public bool takeMoney(int amount)
         {
             if (amount < money)
