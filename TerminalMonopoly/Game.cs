@@ -1,0 +1,207 @@
+﻿using System;
+using System.IO;
+using System.Xml;
+using System.Collections.Generic;
+using System.Linq;
+
+namespace TerminalMonopoly
+{
+    class Game
+    {
+        Dictionary<string, Space> spaces = new Dictionary<string, Space>();
+        Queue<Cards> chanceCards = new Queue<Cards>(16);
+        Queue<Cards> communityCards = new Queue<Cards>(16);
+        string[] board = new string[40];
+        Player[] players;
+
+        public void StartGame()
+        {
+            Console.WriteLine("Welcome to terminal monopoly.");
+            const string fileName = @"C:\Users\Michael-Admin\Google Drive\TerminalMonopoly\TerminalMonopoly\Monopoly.xml";
+            if (!File.Exists(fileName))
+            {
+                Console.WriteLine("Monopoly.xml file missing! Exiting...");
+                return;
+            }
+            Stream xmlFileStream = File.Open(fileName, FileMode.Open);
+            XmlDocument monopolyData = new XmlDocument();
+            
+            string[] board = new string[40];
+            int index = 0;
+            int index1 = 0;
+            int index2 = 0;
+            int i;
+            int numOfPlayers;
+            int piece;
+            monopolyData.Load(xmlFileStream);
+            Cards[] tmp1 = new Cards[16];
+            Cards[] tmp2 = new Cards[16];
+            string[] pieces = { "Battleship", "Race Car", "Dog", "Cat", "Wheelbarrow", "Top Hat", "Thimble", "Shoe" };
+            Random rnd = new Random();
+            int[] selectedPieces = new int[6];
+            foreach (XmlNode currentNode in monopolyData.DocumentElement)
+            {
+                switch (currentNode.Name)
+                {
+                    case "properties":
+                        Property nextProperty = new Property();
+                        if (nextProperty.LoadFromXml(currentNode))
+                            spaces.Add(nextProperty.ID, nextProperty);
+                        else
+                            Console.WriteLine("Unable to load property from XML!");
+                        break;
+                    case "utilities":
+                        PaidSpace nextUtility = new PaidSpace();
+                        if (nextUtility.LoadFromXml(currentNode))
+                            spaces.Add(nextUtility.ID, nextUtility);
+                        else
+                            Console.WriteLine("Unable to load utility from XML!");
+                        break;
+                    case "railroads":
+                        PaidSpace nextRailroad = new PaidSpace();
+                        if (nextRailroad.LoadFromXml(currentNode))
+                            spaces.Add(nextRailroad.ID, nextRailroad);
+                        else
+                            Console.WriteLine("Unable to load railroad from XML!");
+                        break;
+                    case "specials":
+                        Space nextSpecial = new Space();
+                        if (nextSpecial.LoadFromXml(currentNode))
+                            spaces.Add(nextSpecial.ID, nextSpecial);
+                        else
+                            Console.WriteLine("Unable to load special from XML!");
+                        break;
+                    case "tiles":
+                        board[index] = currentNode.FirstChild.InnerText;
+                        index++;
+                        break;
+                    case "chance":
+                        Cards nextChance = new Cards();
+                        if (nextChance.LoadFromXml(currentNode))
+                        {
+                            tmp1[index1] = nextChance;
+                            index1++;
+                        }
+                        else
+                            Console.WriteLine("Unable to load chance from XML!");
+                        break;
+                    case "communitychest":
+                        Cards nextCC = new Cards();
+
+                        if (nextCC.LoadFromXml(currentNode))
+                        {
+                            tmp2[index2] = nextCC;
+                            index2++;
+                        }
+                        else
+                            Console.WriteLine("Unable to load community chest from XML!");
+                        break;
+                }
+
+            }
+            Cards[] shuffled = tmp1.OrderBy(x => rnd.Next()).ToArray();
+            foreach (Cards c in shuffled)
+            {
+                chanceCards.Enqueue(c);
+            }
+            shuffled = tmp2.OrderBy(x => rnd.Next()).ToArray();
+            foreach (Cards c in shuffled)
+            {
+                communityCards.Enqueue(c);
+            }
+            Console.Write("How many players? ");
+            while (!int.TryParse(Console.ReadLine(), out numOfPlayers) || numOfPlayers < 2 || numOfPlayers > 6)
+            {
+                Console.WriteLine("Please enter a number from 2 - 6!");
+            }
+
+            players = new Player[numOfPlayers];
+            for (i = 0; i < numOfPlayers; i++)
+            {
+                for (int j = 0; j < pieces.Length; j++)
+                {
+                    if (!selectedPieces.Contains(j + 1))
+                        Console.Write((j + 1) + ". " + pieces[j] + ", ");
+                }
+                Console.WriteLine("\b\b ");
+                Console.Write("Player " + (i + 1) + " select a piece [1-8]: ");
+                if (!int.TryParse(Console.ReadLine(), out piece) || piece < 1 || piece > 8)
+                {
+                    Console.WriteLine("Please enter a number from 1 - 8!");
+                    i--;
+                }
+                else if (selectedPieces.Contains(piece))
+                {
+                    Console.WriteLine("That piece has already been selected by another player!");
+                }
+                else
+                {
+                    players[i] = new Player(i, pieces[piece]);
+                    selectedPieces[i] = piece;
+                }
+            }
+        }
+
+        private void playGame(int numOfPlayers)
+        {
+            Random rnd = new Random();
+            int currentPlayerNum = rnd.Next(0, numOfPlayers - 1);
+            Player currentPlayer = players[currentPlayerNum];
+            bool gameWon = false;
+            int die1, die2;
+            Console.WriteLine(currentPlayer.Piece + " goes first!");
+            while (!gameWon)
+            {
+                Console.ReadLine();
+                die1 = rnd.Next(1, 6);
+                die2 = rnd.Next(1, 6);
+                Console.WriteLine(currentPlayer.Piece + " rolled " + die1 + die2 + " = " + (die1 + die2));
+                if (die1 == die2)
+                {
+                    Console.WriteLine("Doubles!");
+                }
+                move(currentPlayer, die1 + die2);
+            }
+        }
+        private void move(Player player, int amount)
+        {
+            if(player.Position + amount > 39)
+            {
+                player.addMoney(200);
+            }
+            player.Position += amount;
+            doAction(player);
+        }
+        private void moveTo(Player player, string spaceID)
+        {
+            int location = Array.IndexOf(board, spaceID);
+            int spacesToMove;
+
+            if (location > player.Position)
+            {
+                spacesToMove = location + player.Position;
+            }
+            else
+            {
+                spacesToMove = 40 - player.Position + location;
+                player.addMoney(200);
+            }
+            move(player, location);
+        }
+        private void doAction(Player player)
+        {
+            Space currentSpace = spaces[board[player.Position]];
+            string action = currentSpace.Action;
+            switch(action)
+            {
+                case "rent":
+                    if(((PaidSpace)currentSpace).OwnedBy != Player.None)
+                    {
+
+                    }
+                    break;
+
+            }
+        }
+    }
+}

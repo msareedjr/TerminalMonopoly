@@ -1,0 +1,668 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<root>
+  <properties>
+    <name>Mediterranean Avenue</name>
+    <id>mediterraneanave</id>
+    <action>rent</action>
+    <price>60</price>
+    <rent>2</rent>
+    <multipliedrent>10</multipliedrent>
+    <multipliedrent>30</multipliedrent>
+    <multipliedrent>90</multipliedrent>
+    <multipliedrent>160</multipliedrent>
+    <multipliedrent>250</multipliedrent>
+    <housecost>50</housecost>
+    <color>brown</color>
+  </properties>
+  <properties>
+    <name>Baltic Avenue</name>
+    <id>balticave</id>
+    <action>rent</action>
+    <price>60</price>
+    <rent>4</rent>
+    <multipliedrent>20</multipliedrent>
+    <multipliedrent>60</multipliedrent>
+    <multipliedrent>180</multipliedrent>
+    <multipliedrent>320</multipliedrent>
+    <multipliedrent>450</multipliedrent>
+    <housecost>50</housecost>
+    <color>brown</color>
+  </properties>
+  <properties>
+    <name>Oriental Avenue</name>
+    <id>orientalave</id>
+    <action>rent</action>
+    <price>100</price>
+    <rent>6</rent>
+    <multipliedrent>30</multipliedrent>
+    <multipliedrent>90</multipliedrent>
+    <multipliedrent>270</multipliedrent>
+    <multipliedrent>400</multipliedrent>
+    <multipliedrent>550</multipliedrent>
+    <housecost>50</housecost>
+    <color>lightblue</color>
+  </properties>
+  <properties>
+    <name>Vermont Avenue</name>
+    <id>vermontave</id>
+    <action>rent</action>
+    <price>100</price>
+    <rent>6</rent>
+    <multipliedrent>30</multipliedrent>
+    <multipliedrent>90</multipliedrent>
+    <multipliedrent>270</multipliedrent>
+    <multipliedrent>400</multipliedrent>
+    <multipliedrent>550</multipliedrent>
+    <housecost>50</housecost>
+    <color>lightblue</color>
+  </properties>
+  <properties>
+    <name>Connecticut Avenue</name>
+    <id>connecticutave</id>
+    <action>rent</action>
+    <price>120</price>
+    <rent>8</rent>
+    <multipliedrent>40</multipliedrent>
+    <multipliedrent>100</multipliedrent>
+    <multipliedrent>300</multipliedrent>
+    <multipliedrent>450</multipliedrent>
+    <multipliedrent>600</multipliedrent>
+    <housecost>50</housecost>
+    <color>lightblue</color>
+  </properties>
+  <properties>
+    <name>St. Charles Place</name>
+    <id>stcharlesplace</id>
+    <action>rent</action>
+    <price>140</price>
+    <rent>10</rent>
+    <multipliedrent>50</multipliedrent>
+    <multipliedrent>150</multipliedrent>
+    <multipliedrent>450</multipliedrent>
+    <multipliedrent>625</multipliedrent>
+    <multipliedrent>750</multipliedrent>
+    <housecost>100</housecost>
+    <color>Pink</color>
+  </properties>
+  <properties>
+    <name>States Avenue</name>
+    <id>statesave</id>
+    <action>rent</action>
+    <price>140</price>
+    <rent>10</rent>
+    <multipliedrent>50</multipliedrent>
+    <multipliedrent>150</multipliedrent>
+    <multipliedrent>450</multipliedrent>
+    <multipliedrent>625</multipliedrent>
+    <multipliedrent>750</multipliedrent>
+    <housecost>100</housecost>
+    <color>Pink</color>
+  </properties>
+  <properties>
+    <name>Virginia Avenue</name>
+    <id>virginiaave</id>
+    <action>rent</action>
+    <price>160</price>
+    <rent>12</rent>
+    <multipliedrent>60</multipliedrent>
+    <multipliedrent>180</multipliedrent>
+    <multipliedrent>500</multipliedrent>
+    <multipliedrent>700</multipliedrent>
+    <multipliedrent>900</multipliedrent>
+    <housecost>100</housecost>
+    <color>Pink</color>
+  </properties>
+  <properties>
+    <name>St. James Place</name>
+    <id>stjamesplace</id>
+    <action>rent</action>
+    <price>180</price>
+    <rent>14</rent>
+    <multipliedrent>70</multipliedrent>
+    <multipliedrent>200</multipliedrent>
+    <multipliedrent>550</multipliedrent>
+    <multipliedrent>750</multipliedrent>
+    <multipliedrent>950</multipliedrent>
+    <housecost>100</housecost>
+    <color>Orange</color>
+  </properties>
+  <properties>
+    <name>Tennessee Avenue</name>
+    <id>tennesseeave</id>
+    <action>rent</action>
+    <price>180</price>
+    <rent>14</rent>
+    <multipliedrent>70</multipliedrent>
+    <multipliedrent>200</multipliedrent>
+    <multipliedrent>550</multipliedrent>
+    <multipliedrent>750</multipliedrent>
+    <multipliedrent>950</multipliedrent>
+    <housecost>100</housecost>
+    <color>Orange</color>
+  </properties>
+  <properties>
+    <name>New York Avenue</name>
+    <id>newyorkave</id>
+    <action>rent</action>
+    <price>200</price>
+    <rent>16</rent>
+    <multipliedrent>80</multipliedrent>
+    <multipliedrent>220</multipliedrent>
+    <multipliedrent>600</multipliedrent>
+    <multipliedrent>800</multipliedrent>
+    <multipliedrent>1000</multipliedrent>
+    <housecost>100</housecost>
+    <color>Orange</color>
+  </properties>
+  <properties>
+    <name>Kentucky Avenue</name>
+    <id>kentuckyave</id>
+    <action>rent</action>
+    <price>220</price>
+    <rent>18</rent>
+    <multipliedrent>90</multipliedrent>
+    <multipliedrent>250</multipliedrent>
+    <multipliedrent>700</multipliedrent>
+    <multipliedrent>875</multipliedrent>
+    <multipliedrent>1050</multipliedrent>
+    <housecost>150</housecost>
+    <color>Red</color>
+  </properties>
+  <properties>
+    <name>Indiana Avenue</name>
+    <id>indianaave</id>
+    <action>rent</action>
+    <price>220</price>
+    <rent>18</rent>
+    <multipliedrent>90</multipliedrent>
+    <multipliedrent>250</multipliedrent>
+    <multipliedrent>700</multipliedrent>
+    <multipliedrent>875</multipliedrent>
+    <multipliedrent>1050</multipliedrent>
+    <housecost>150</housecost>
+    <color>Red</color>
+  </properties>
+  <properties>
+    <name>Illinois Avenue</name>
+    <id>illinoisave</id>
+    <action>rent</action>
+    <price>240</price>
+    <rent>20</rent>
+    <multipliedrent>100</multipliedrent>
+    <multipliedrent>300</multipliedrent>
+    <multipliedrent>750</multipliedrent>
+    <multipliedrent>925</multipliedrent>
+    <multipliedrent>1100</multipliedrent>
+    <housecost>150</housecost>
+    <color>Red</color>
+  </properties>
+  <properties>
+    <name>Atlantic Avenue</name>
+    <id>atlanticave</id>
+    <action>rent</action>
+    <price>260</price>
+    <rent>22</rent>
+    <multipliedrent>110</multipliedrent>
+    <multipliedrent>330</multipliedrent>
+    <multipliedrent>800</multipliedrent>
+    <multipliedrent>975</multipliedrent>
+    <multipliedrent>1150</multipliedrent>
+    <housecost>150</housecost>
+    <color>Yellow</color>
+  </properties>
+  <properties>
+    <name>Ventnor Avenue</name>
+    <id>ventnorave</id>
+    <action>rent</action>
+    <price>260</price>
+    <rent>22</rent>
+    <multipliedrent>110</multipliedrent>
+    <multipliedrent>330</multipliedrent>
+    <multipliedrent>800</multipliedrent>
+    <multipliedrent>975</multipliedrent>
+    <multipliedrent>1150</multipliedrent>
+    <housecost>150</housecost>
+    <color>Yellow</color>
+  </properties>
+  <properties>
+    <name>Marvin Gardens</name>
+    <id>marvingardens</id>
+    <action>rent</action>
+    <price>280</price>
+    <rent>22</rent>
+    <multipliedrent>120</multipliedrent>
+    <multipliedrent>360</multipliedrent>
+    <multipliedrent>850</multipliedrent>
+    <multipliedrent>1025</multipliedrent>
+    <multipliedrent>1200</multipliedrent>
+    <housecost>150</housecost>
+    <color>Yellow</color>
+  </properties>
+  <properties>
+    <name>Pacific Avenue</name>
+    <id>pacificave</id>
+    <action>rent</action>
+    <price>300</price>
+    <rent>26</rent>
+    <multipliedrent>130</multipliedrent>
+    <multipliedrent>390</multipliedrent>
+    <multipliedrent>900</multipliedrent>
+    <multipliedrent>1100</multipliedrent>
+    <multipliedrent>1275</multipliedrent>
+    <housecost>200</housecost>
+    <color>Green</color>
+  </properties>
+  <properties>
+    <name>North Carolina Avenue</name>
+    <id>northcarolinaave</id>
+    <action>rent</action>
+    <price>300</price>
+    <rent>26</rent>
+    <multipliedrent>130</multipliedrent>
+    <multipliedrent>390</multipliedrent>
+    <multipliedrent>900</multipliedrent>
+    <multipliedrent>1100</multipliedrent>
+    <multipliedrent>1275</multipliedrent>
+    <housecost>200</housecost>
+    <color>Green</color>
+  </properties>
+  <properties>
+    <name>Pennsylvania Avenue</name>
+    <id>pennsylvaniaave</id>
+    <action>rent</action>
+    <price>320</price>
+    <rent>28</rent>
+    <multipliedrent>150</multipliedrent>
+    <multipliedrent>450</multipliedrent>
+    <multipliedrent>1000</multipliedrent>
+    <multipliedrent>1200</multipliedrent>
+    <multipliedrent>1400</multipliedrent>
+    <housecost>200</housecost>
+    <color>Green</color>
+  </properties>
+  <properties>
+    <name>Park Place</name>
+    <id>parkplace</id>
+    <action>rent</action>
+    <price>350</price>
+    <rent>35</rent>
+    <multipliedrent>175</multipliedrent>
+    <multipliedrent>500</multipliedrent>
+    <multipliedrent>1100</multipliedrent>
+    <multipliedrent>1300</multipliedrent>
+    <multipliedrent>1500</multipliedrent>
+    <housecost>200</housecost>
+    <color>darkblue</color>
+  </properties>
+  <properties>
+    <name>Boardwalk</name>
+    <id>boardwalk</id>
+    <action>rent</action>
+    <price>400</price>
+    <rent>50</rent>
+    <multipliedrent>200</multipliedrent>
+    <multipliedrent>600</multipliedrent>
+    <multipliedrent>1400</multipliedrent>
+    <multipliedrent>1700</multipliedrent>
+    <multipliedrent>2000</multipliedrent>
+    <housecost>200</housecost>
+    <color>darkblue</color>
+  </properties>
+  <utilities>
+    <name>Electric Company</name>
+    <id>electriccompany</id>
+    <action>urent</action>
+    <price>150</price>
+  </utilities>
+  <utilities>
+    <name>Water Works</name>
+    <id>waterworks</id>
+    <action>urent</action>
+    <price>150</price>
+  </utilities>
+  <railroads>
+    <name>Reading Railroad</name>
+    <id>readingrailroad</id>
+    <action>rrrent</action>
+    <price>200</price>
+  </railroads>
+  <railroads>
+    <name>Pennsylvania Railroad</name>
+    <id>pennsylvaniarailroad</id>
+    <action>rrrent</action>
+    <price>200</price>
+  </railroads>
+  <railroads>
+    <name>B. &amp; O. Railroad</name>
+    <id>borailroad</id>
+    <action>rrrent</action>
+    <price>200</price>
+  </railroads>
+  <railroads>
+    <name>Short Line Railroad</name>
+    <id>shortlinerailroad</id>
+    <action>rrrent</action>
+    <price>200</price>
+  </railroads>
+  <specials>
+    <name>Go</name>
+    <id>go</id>
+    <action>salary</action>
+  </specials>
+  <specials>
+    <name>Income Tax</name>
+    <id>incometax</id>
+    <action>incometax</action>
+  </specials>
+  <specials>
+    <name>Jail / Just Visiting</name>
+    <id>jail</id>
+    <action>jail</action>
+  </specials>
+  <specials>
+    <name>Chance</name>
+    <id>chance</id>
+    <action>chance</action>
+  </specials>
+  <specials>
+    <name>Free Parking</name>
+    <id>freeparking</id>
+    <action>none</action>
+  </specials>
+  <specials>
+    <name>Community Chest</name>
+    <id>communitychest</id>
+    <action>commchest</action>
+  </specials>
+  <specials>
+    <name>Go To Jail</name>
+    <id>gotojail</id>
+    <action>jailplayer</action>
+  </specials>
+  <specials>
+    <name>Luxury Tax</name>
+    <id>luxerytax</id>
+    <action>luxurytax</action>
+  </specials>
+  <tiles>
+    <id>go</id>
+  </tiles>
+  <tiles>
+    <id>mediterraneanave</id>
+  </tiles>
+  <tiles>
+    <id>communitychest</id>
+  </tiles>
+  <tiles>
+    <id>balticave</id>
+  </tiles>
+  <tiles>
+    <id>incometax</id>
+  </tiles>
+  <tiles>
+    <id>readingrailroad</id>
+  </tiles>
+  <tiles>
+    <id>orientalave</id>
+  </tiles>
+  <tiles>
+    <id>chance</id>
+  </tiles>
+  <tiles>
+    <id>vermontave</id>
+  </tiles>
+  <tiles>
+    <id>connecticutave</id>
+  </tiles>
+  <tiles>
+    <id>jail</id>
+  </tiles>
+  <tiles>
+    <id>stcharlesplace</id>
+  </tiles>
+  <tiles>
+    <id>electriccompany</id>
+  </tiles>
+  <tiles>
+    <id>statesave</id>
+  </tiles>
+  <tiles>
+    <id>virginiaave</id>
+  </tiles>
+  <tiles>
+    <id>pennsylvaniarailroad</id>
+  </tiles>
+  <tiles>
+    <id>stjamesplace</id>
+  </tiles>
+  <tiles>
+    <id>communitychest</id>
+  </tiles>
+  <tiles>
+    <id>tennesseeave</id>
+  </tiles>
+  <tiles>
+    <id>newyorkave</id>
+  </tiles>
+  <tiles>
+    <id>freeparking</id>
+  </tiles>
+  <tiles>
+    <id>kentuckyave</id>
+  </tiles>
+  <tiles>
+    <id>chance</id>
+  </tiles>
+  <tiles>
+    <id>indianaave</id>
+  </tiles>
+  <tiles>
+    <id>illinoisave</id>
+  </tiles>
+  <tiles>
+    <id>borailroad</id>
+  </tiles>
+  <tiles>
+    <id>atlanticave</id>
+  </tiles>
+  <tiles>
+    <id>ventnorave</id>
+  </tiles>
+  <tiles>
+    <id>waterworks</id>
+  </tiles>
+  <tiles>
+    <id>marvingardens</id>
+  </tiles>
+  <tiles>
+    <id>gotojail</id>
+  </tiles>
+  <tiles>
+    <id>pacificave</id>
+  </tiles>
+  <tiles>
+    <id>northcarolinaave</id>
+  </tiles>
+  <tiles>
+    <id>communitychest</id>
+  </tiles>
+  <tiles>
+    <id>pennsylvaniaave</id>
+  </tiles>
+  <tiles>
+    <id>shortlinerailroad</id>
+  </tiles>
+  <tiles>
+    <id>chance</id>
+  </tiles>
+  <tiles>
+    <id>parkplace</id>
+  </tiles>
+  <tiles>
+    <id>luxerytax</id>
+  </tiles>
+  <tiles>
+    <id>boardwalk</id>
+  </tiles>
+  <chance>
+    <title>Advance to Go (Collect $200)</title>
+    <action>move</action>
+    <arg1>go</arg1>
+  </chance>
+  <chance>
+    <title>Advance to Illinois Avenue - If you pass Go, collect $200</title>
+    <action>move</action>
+    <arg1>illinoiseave</arg1>
+  </chance>
+  <chance>
+    <title>Advance to St. Charles Place - If you pass Go, collect $200</title>
+    <action>move</action>
+    <arg1>stcharlesplace</arg1>
+  </chance>
+  <chance>
+    <title>Advance token to nearest Utility. If unowned, you may buy it from the Bank. If owned, throw dice and pay owner a total ten times the amount thrown.</title>
+    <action>movenearest</action>
+    <arg1>utility</arg1>
+    <arg2>10</arg2>
+  </chance>
+  <chance>
+    <title>Advance token to the nearest Railroad and pay owner twice the rental to which he/she is otherwise entitled. If Railroad is unowned, you may buy it from the Bank.</title>
+    <action>movenearest</action>
+    <arg1>railroad</arg1>
+    <arg2>2</arg2>
+  </chance>
+  <chance>
+    <title>Advance token to the nearest Railroad and pay owner twice the rental to which he/she is otherwise entitled. If Railroad is unowned, you may buy it from the Bank.</title>
+    <action>movenearest</action>
+    <arg1>railroad</arg1>
+    <arg2>2</arg2>
+  </chance>
+  <chance>
+    <title>Bank pays you dividend of $50</title>
+    <action>addfunds</action>
+    <arg1>50</arg1>
+  </chance>
+  <chance>
+    <title>Get out of Jail Free - This card may be kept until needed, or traded/sold</title>
+    <action>giveoutofjail</action>
+  </chance>
+  <chance>
+    <title>Go Back 3 Spaces</title>
+    <action>moverelative</action>
+    <arg1>-3</arg1>
+  </chance>
+  <chance>
+    <title>Go to Jail - Go directly to Jail - Do not pass Go, do not collect $200</title>
+    <action>jailplayer</action>
+  </chance>
+  <chance>
+    <title>Make general repairs on all your property - For each house pay $25 - For each hotel $100</title>
+    <action>propertycharges</action>
+    <arg1>25</arg1>
+    <arg2>100</arg2>
+  </chance>
+  <chance>
+    <title>Speeding fine $15</title>
+    <action>removefunds</action>
+    <arg1>15</arg1>
+  </chance>
+  <chance>
+    <title>Take a trip to Reading Railroad - If you pass Go, collect $200</title>
+    <action>move</action>
+    <arg1>readingrailroad</arg1>
+  </chance>
+  <chance>
+    <title>Advance to Boardwalk.</title>
+    <action>move</action>
+    <arg1>boardwalk</arg1>
+  </chance>
+  <chance>
+    <title>You have been elected Chairman of the Board - Pay each player $50</title>
+    <action>removefundstoplayers</action>
+    <arg1>50</arg1>
+  </chance>
+  <chance>
+    <title>Your building loan matures - Collect $150</title>
+    <action>addfunds</action>
+    <arg1>50</arg1>
+  </chance>
+  <communitychest>
+    <title>Advance to Go (Collect $200)</title>
+    <action>move</action>
+    <arg1>go</arg1>
+  </communitychest>
+  <communitychest>
+    <title>Bank error in your favor - Collect $200 </title>
+    <action>addfunds</action>
+    <arg1>200</arg1>
+  </communitychest>
+  <communitychest>
+    <title>Doctor fee - Pay $50</title>
+    <action>removefunds</action>
+    <arg1>50</arg1>
+  </communitychest>
+  <communitychest>
+    <title>From sale of stock you get $50</title>
+    <action>addfunds</action>
+    <arg1>50</arg1>
+  </communitychest>
+  <communitychest>
+    <title>Get Out of Jail Free</title>
+    <action>giveoutofjail</action>
+  </communitychest>
+  <communitychest>
+    <title>Go to Jail - Go directly to jail - Do not pass Go - Do not collect $200</title>
+    <action>jailplayer</action>
+  </communitychest>
+  <communitychest>
+    <title>It is your birthday. Collect $10 from every player.</title>
+    <action>addfundsfromplayers</action>
+    <arg1>10</arg1>
+  </communitychest>
+  <communitychest>
+    <title>Holiday Fund matures - Receive $100</title>
+    <action>addfunds</action>
+    <arg1>100</arg1>
+  </communitychest>
+  <communitychest>
+    <title>Income tax refund - Collect $20</title>
+    <action>addfunds</action>
+    <arg1>20</arg1>
+  </communitychest>
+  <communitychest>
+    <title>Life insurance matures - Collect $100</title>
+    <action>addfunds</action>
+    <arg1>100</arg1>
+  </communitychest>
+  <communitychest>
+    <title>Pay hospital fees of $100</title>
+    <action>removefunds</action>
+    <arg1>100</arg1>
+  </communitychest>
+  <communitychest>
+    <title>Pay school fees of $150</title>
+    <action>removefunds</action>
+    <arg1>150</arg1>
+  </communitychest>
+  <communitychest>
+    <title>Receive $25 consultancy fee</title>
+    <action>addfunds</action>
+    <arg1>25</arg1>
+  </communitychest>
+  <communitychest>
+    <title>You are assessed for street repairs - $40 per house - $115 per hotel</title>
+    <action>propertycharges</action>
+    <arg1>40</arg1>
+    <arg2>115</arg2>
+  </communitychest>
+  <communitychest>
+    <title>You have won second prize in a beauty contest - Collect $10</title>
+    <action>addfunds</action>
+    <arg1>10</arg1>
+  </communitychest>
+  <communitychest>
+    <title>You inherit $100</title>
+    <action>addfunds</action>
+    <arg1>100</arg1>
+  </communitychest>
+</root>

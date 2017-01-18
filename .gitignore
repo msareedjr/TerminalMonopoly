@@ -1,1 +1,2 @@
-*.exe
+/TerminalMonopoly/bin/**
+/TerminalMonopoly/obj/**
