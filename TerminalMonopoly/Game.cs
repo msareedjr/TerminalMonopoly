@@ -159,8 +159,14 @@ namespace TerminalMonopoly
                 if (die1 == die2)
                 {
                     Console.WriteLine("Doubles!");
+                    currentPlayerNum--;
                 }
                 move(currentPlayer, die1 + die2);
+                if(die1 == die2 && currentPlayer.Jailed)
+                {
+                    currentPlayerNum++;
+                }
+                currentPlayerNum++;
             }
         }
         private void move(Player player, int amount)
@@ -170,7 +176,7 @@ namespace TerminalMonopoly
                 player.addMoney(200);
             }
             player.Position += amount;
-            doAction(player);
+            doAction(player, amount);
         }
         private void moveTo(Player player, string spaceID)
         {
@@ -188,16 +194,26 @@ namespace TerminalMonopoly
             }
             move(player, location);
         }
-        private void doAction(Player player)
+        private void doAction(Player player, int diceAmount)
         {
             Space currentSpace = spaces[board[player.Position]];
             string action = currentSpace.Action;
             switch(action)
             {
                 case "rent":
-                    if(((PaidSpace)currentSpace).OwnedBy != Player.None)
+                    PaidSpace rentedSpace = (PaidSpace)currentSpace;
+                    if (rentedSpace.OwnedBy != Player.None && rentedSpace.OwnedBy != player)
                     {
-
+                        player.takeMoney(rentedSpace.Price);
+                        rentedSpace.OwnedBy.addMoney(rentedSpace.Price);                        
+                    }
+                    break;
+                case "urent":
+                    PaidSpace rentedUtility = (PaidSpace)currentSpace;
+                    if (rentedUtility.OwnedBy != Player.None && rentedUtility.OwnedBy != player)
+                    {
+                        if()
+                        rentedUtility.OwnedBy.addMoney(rentedUtility.Price);
                     }
                     break;
 
