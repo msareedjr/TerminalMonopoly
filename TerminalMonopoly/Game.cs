@@ -13,6 +13,7 @@ namespace TerminalMonopoly
         Queue<Cards> communityCards = new Queue<Cards>(16);
         string[] board = new string[40];
         Player[] players;
+        Random rnd = new Random();
 
         public void StartGame()
         {
@@ -37,7 +38,7 @@ namespace TerminalMonopoly
             Cards[] tmp1 = new Cards[16];
             Cards[] tmp2 = new Cards[16];
             string[] pieces = { "Battleship", "Race Car", "Dog", "Cat", "Wheelbarrow", "Top Hat", "Thimble", "Shoe" };
-            Random rnd = new Random();
+            
             int[] selectedPieces = new int[6];
             foreach (XmlNode currentNode in monopolyData.DocumentElement)
             {
@@ -146,8 +147,7 @@ namespace TerminalMonopoly
 
         private void playGame(int numOfPlayers)
         {
-            Random rnd = new Random();
-            int currentPlayerNum = rnd.Next(0, numOfPlayers - 1);
+            int currentPlayerNum = rnd.Next(numOfPlayers);
             Player currentPlayer = players[currentPlayerNum];
             bool gameWon = false;
             int die1, die2;
@@ -164,7 +164,9 @@ namespace TerminalMonopoly
                     currentPlayerNum--;
                 }
                 move(currentPlayer, die1 + die2);
-                if(die1 == die2 && currentPlayer.Jailed)
+                Console.WriteLine(currentPlayer.Piece + " landed on " + nameOfPosition(currentPlayer));
+                doAction(currentPlayer, die1 + die2);
+                if (die1 == die2 && currentPlayer.Jailed)
                 {
                     currentPlayerNum++;
                 }
@@ -180,7 +182,6 @@ namespace TerminalMonopoly
                 player.addMoney(200);
             }
             player.Position += amount;
-            doAction(player, amount);
         }
         private void moveTo(Player player, string spaceID)
         {
@@ -242,7 +243,7 @@ namespace TerminalMonopoly
             Queue<PaidSpace> inGroup = new Queue<PaidSpace>();
             PaidSpace currentSpace = (PaidSpace)spaces[board[player.Position]];
 
-            foreach (PaidSpace space in spaces.Values)
+            foreach (Space space in spaces.Values)
             {
                 switch(group)
                 {
@@ -254,13 +255,13 @@ namespace TerminalMonopoly
                             inGroup.Enqueue(prop);
                         }
                         break;
-                    case "utility":
+                    case "utilities":
                         if (space.Action == "urent")
-                            inGroup.Enqueue(space);
+                            inGroup.Enqueue((PaidSpace)space);
                         break;
                     case "railroad":
                         if (space.Action == "rrrent")
-                            inGroup.Enqueue(space);
+                            inGroup.Enqueue((PaidSpace)space);
                         break;
                 }
             }
@@ -287,8 +288,13 @@ namespace TerminalMonopoly
             {
                 player.takeMoney(space.Price);
                 space.OwnedBy = player;
+                Console.WriteLine(player.Piece + " purchased " + space.Name);
             }
             //else do auction
+        }
+        private string nameOfPosition(Player player)
+        {
+            return spaces[board[player.Position]].Name;
         }
     }
 }
