@@ -155,8 +155,8 @@ namespace TerminalMonopoly
             while (!gameWon)
             {
                 Console.ReadLine();
-                die1 = rnd.Next(1, 6);
-                die2 = rnd.Next(1, 6);
+                die1 = rnd.Next(6)+1;
+                die2 = rnd.Next(6)+1;
                 Console.WriteLine(currentPlayer.Piece + " rolled " + die1 +" & "+ die2 + " = " + (die1 + die2));
                 if (die1 == die2)
                 {
@@ -222,7 +222,7 @@ namespace TerminalMonopoly
                     if (rentedUtility.OwnedBy != Player.None && rentedUtility.OwnedBy != player)
                     {
                         int urent;
-                        if (ownsGroup(rentedUtility.OwnedBy, "utilities"))
+                        if (ownsGroup(rentedUtility.OwnedBy, currentSpace, "utilities"))
                             urent = 10 * diceAmount;
                         else
                             urent = 4 * diceAmount;
@@ -238,10 +238,9 @@ namespace TerminalMonopoly
 
             }
         }
-        private bool ownsGroup(Player player, string group)
+        private bool ownsGroup(Player player, Space currentSpace, string group)
         {
             Queue<PaidSpace> inGroup = new Queue<PaidSpace>();
-            PaidSpace currentSpace = (PaidSpace)spaces[board[player.Position]];
 
             foreach (Space space in spaces.Values)
             {
