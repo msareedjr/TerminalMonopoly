@@ -206,11 +206,12 @@ namespace TerminalMonopoly
             switch(action)
             {
                 case "rent":
-                    PaidSpace rentedSpace = (PaidSpace)currentSpace;
+                    Property rentedSpace = (Property)currentSpace;
                     if (rentedSpace.OwnedBy != Player.None && rentedSpace.OwnedBy != player)
                     {
-                        player.takeMoney(rentedSpace.Price);
-                        rentedSpace.OwnedBy.addMoney(rentedSpace.Price);                        
+                        player.takeMoney(rentedSpace.Rent);
+                        rentedSpace.OwnedBy.addMoney(rentedSpace.Rent);
+                        Console.WriteLine(player.Piece + " paid $" + rentedSpace.Rent + " to " + rentedSpace.OwnedBy.Piece + " for rent.");                   
                     }
                     if(rentedSpace.OwnedBy == Player.None)
                     {

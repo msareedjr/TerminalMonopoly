@@ -63,7 +63,7 @@ namespace TerminalMonopoly
             get
             {
                 if (Houses == 0)
-                    return Rent;
+                    return rent;
                 else
                     return multipliedRent[Houses - 1];
             }
