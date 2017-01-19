@@ -11,11 +11,10 @@ namespace TerminalMonopoly
     {
         private int price;
         private Player ownedby;
-        private bool mortgaged;
 
         public PaidSpace()
         {
-            mortgaged = false;
+            Mortgaged = false;
             ownedby = Player.None;
         }
 
@@ -39,7 +38,14 @@ namespace TerminalMonopoly
         }
         public Player OwnedBy
         {
-            get; set;
+            get
+            {
+                return ownedby;
+            }
+            set
+            {
+                ownedby = value;
+            }
         }
         public int Price
         {

@@ -11,7 +11,6 @@ namespace TerminalMonopoly
     {
         private string name;
         private string id;
-        private const string type = "Special";
         private string action;
 
         public Space()
@@ -43,10 +42,6 @@ namespace TerminalMonopoly
             {
                 return id;
             }
-        }
-        public string Type
-        {
-            get { return type; }
         }
         public string Action
         {

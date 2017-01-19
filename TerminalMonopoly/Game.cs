@@ -26,7 +26,7 @@ namespace TerminalMonopoly
             Stream xmlFileStream = File.Open(fileName, FileMode.Open);
             XmlDocument monopolyData = new XmlDocument();
             
-            string[] board = new string[40];
+            board = new string[40];
             int index = 0;
             int index1 = 0;
             int index2 = 0;
@@ -136,10 +136,12 @@ namespace TerminalMonopoly
                 }
                 else
                 {
+                    piece--;
                     players[i] = new Player(i, pieces[piece]);
                     selectedPieces[i] = piece;
                 }
             }
+            playGame(numOfPlayers);
         }
 
         private void playGame(int numOfPlayers)
@@ -155,7 +157,7 @@ namespace TerminalMonopoly
                 Console.ReadLine();
                 die1 = rnd.Next(1, 6);
                 die2 = rnd.Next(1, 6);
-                Console.WriteLine(currentPlayer.Piece + " rolled " + die1 + die2 + " = " + (die1 + die2));
+                Console.WriteLine(currentPlayer.Piece + " rolled " + die1 +" & "+ die2 + " = " + (die1 + die2));
                 if (die1 == die2)
                 {
                     Console.WriteLine("Doubles!");
@@ -167,6 +169,8 @@ namespace TerminalMonopoly
                     currentPlayerNum++;
                 }
                 currentPlayerNum++;
+                currentPlayerNum = currentPlayerNum % numOfPlayers;
+                currentPlayer = players[currentPlayerNum];
             }
         }
         private void move(Player player, int amount)
@@ -207,6 +211,10 @@ namespace TerminalMonopoly
                         player.takeMoney(rentedSpace.Price);
                         rentedSpace.OwnedBy.addMoney(rentedSpace.Price);                        
                     }
+                    if(rentedSpace.OwnedBy == Player.None)
+                    {
+                        purchase(rentedSpace, player);
+                    }
                     break;
                 case "urent":
                     PaidSpace rentedUtility = (PaidSpace)currentSpace;
@@ -221,6 +229,10 @@ namespace TerminalMonopoly
 
                         rentedUtility.OwnedBy.addMoney(rentedUtility.Price);
                     }
+                    if (rentedUtility.OwnedBy == Player.None)
+                    {
+                        purchase(rentedUtility, player);
+                    }
                     break;
 
             }
@@ -229,9 +241,9 @@ namespace TerminalMonopoly
         {
             Queue<PaidSpace> inGroup = new Queue<PaidSpace>();
             PaidSpace currentSpace = (PaidSpace)spaces[board[player.Position]];
-            foreach (KeyValuePair<string,Space> s in spaces)
+
+            foreach (PaidSpace space in spaces.Values)
             {
-                Space space = s.Value;
                 switch(group)
                 {
                     case "property":
@@ -239,11 +251,32 @@ namespace TerminalMonopoly
                         Property curProp = (Property)currentSpace;
                         if (prop.Color.Equals(curProp.Color))
                         {
-                            inGroup.Enqueue(space);
+                            inGroup.Enqueue(prop);
                         }
+                        break;
+                    case "utility":
+                        if (space.Action == "urent")
+                            inGroup.Enqueue(space);
+                        break;
+                    case "railroad":
+                        if (space.Action == "rrrent")
+                            inGroup.Enqueue(space);
                         break;
                 }
             }
+            Player owner = inGroup.Dequeue().OwnedBy;
+            if (owner == Player.None)
+                return false;
+            foreach(PaidSpace s in inGroup)
+            {
+                if (owner != s.OwnedBy)
+                    return false;
+            }
+            return true;
+        }
+        private void purchase(PaidSpace space, Player owner)
+        {
+            Console.WriteLine(space.Name + " costs $" + space.Price);
         }
     }
 }
