@@ -274,9 +274,21 @@ namespace TerminalMonopoly
             }
             return true;
         }
-        private void purchase(PaidSpace space, Player owner)
+        private void purchase(PaidSpace space, Player player)
         {
-            Console.WriteLine(space.Name + " costs $" + space.Price);
+            string ans;
+            do
+            {
+                Console.WriteLine(space.Name + " costs $" + space.Price + ". Do you wish to purchase this property? [Y/n]");
+                ans = Console.ReadLine().ToLower();
+            }
+            while (ans[0] != 'y' && ans[0] != 'n' && ans != String.Empty);
+            if (ans[0] == 'y' || ans == String.Empty)
+            {
+                player.takeMoney(space.Price);
+                space.OwnedBy = player;
+            }
+            //else do auction
         }
     }
 }
