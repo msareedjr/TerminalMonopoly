@@ -282,8 +282,8 @@ namespace TerminalMonopoly
                 Console.WriteLine(space.Name + " costs $" + space.Price + ". Do you wish to purchase this property? [Y/n]");
                 ans = Console.ReadLine().ToLower();
             }
-            while (ans[0] != 'y' && ans[0] != 'n' && ans != String.Empty);
-            if (ans[0] == 'y' || ans == String.Empty)
+            while (ans != String.Empty && ans[0] != 'y' && ans[0] != 'n');
+            if (ans == String.Empty || ans[0] == 'y')
             {
                 player.takeMoney(space.Price);
                 space.OwnedBy = player;
