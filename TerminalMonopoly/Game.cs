@@ -19,12 +19,16 @@ namespace TerminalMonopoly
         {
             Console.WriteLine("Welcome to terminal monopoly.");
             const string fileName = @"C:\Users\Michael-Admin\Google Drive\TerminalMonopoly\TerminalMonopoly\Monopoly.xml";
-            if (!File.Exists(fileName))
+            if (!File.Exists(fileName) && !File.Exists("monopoly.xml"))
             {
                 Console.WriteLine("Monopoly.xml file missing! Exiting...");
                 return;
             }
-            Stream xmlFileStream = File.Open(fileName, FileMode.Open);
+            Stream xmlFileStream;
+            if (File.Exists(fileName))
+                xmlFileStream = File.Open(fileName, FileMode.Open);
+            else
+                xmlFileStream = File.Open("monopoly.xml", FileMode.Open);
             XmlDocument monopolyData = new XmlDocument();
             
             board = new string[40];
