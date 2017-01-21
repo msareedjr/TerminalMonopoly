@@ -201,7 +201,7 @@ namespace TerminalMonopoly
                 spacesToMove = 40 - player.Position + location;
                 player.addMoney(200);
             }
-            move(player, location);
+            move(player, spacesToMove);
         }
         private void doAction(Player player, int diceAmount)
         {
