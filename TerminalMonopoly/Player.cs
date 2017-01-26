@@ -15,6 +15,7 @@ namespace TerminalMonopoly
         public Player(int idNum, String piece)
         {
             Piece = piece;
+            money = 1500;
             id = idNum;
         }
         public static Player None = new Player(-1, "none");
@@ -56,6 +57,20 @@ namespace TerminalMonopoly
         {
             money += amount;
         }
-        
+        public override string ToString()
+        {
+            string statusString = String.Empty;
+            statusString += Piece;
+            if (Jailed)
+            {
+                statusString += " In Jail,";
+            }
+            statusString += " Position: ";
+            statusString += Game.spaces[Game.Board[position]].Name;
+            statusString += ", Money: $";
+            statusString += money;
+            
+            return statusString;
+        }
     }
 }

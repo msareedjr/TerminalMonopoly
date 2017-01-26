@@ -3,15 +3,16 @@ using System.IO;
 using System.Xml;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 
 namespace TerminalMonopoly
 {
     class Game
     {
-        Dictionary<string, Space> spaces = new Dictionary<string, Space>();
+        public static Dictionary<string, Space> spaces = new Dictionary<string, Space>();
         Queue<Cards> chanceCards = new Queue<Cards>(16);
         Queue<Cards> communityCards = new Queue<Cards>(16);
-        string[] board = new string[40];
+        public static string[] Board = new string[40];
         Player[] players;
         Random rnd = new Random();
 
@@ -31,7 +32,7 @@ namespace TerminalMonopoly
                 xmlFileStream = File.Open("Monopoly.xml", FileMode.Open);
             XmlDocument monopolyData = new XmlDocument();
             
-            board = new string[40];
+            Board = new string[40];
             int index = 0;
             int index1 = 0;
             int index2 = 0;
@@ -77,7 +78,7 @@ namespace TerminalMonopoly
                             Console.WriteLine("Unable to load special from XML!");
                         break;
                     case "tiles":
-                        board[index] = currentNode.FirstChild.InnerText;
+                        Board[index] = currentNode.FirstChild.InnerText;
                         index++;
                         break;
                     case "chance":
@@ -138,14 +139,16 @@ namespace TerminalMonopoly
                 else if (selectedPieces.Contains(piece))
                 {
                     Console.WriteLine("That piece has already been selected by another player!");
+                    i--;
                 }
                 else
                 {
+                    selectedPieces[i] = piece;
                     piece--;
                     players[i] = new Player(i, pieces[piece]);
-                    selectedPieces[i] = piece;
                 }
             }
+            xmlFileStream.Close();
             playGame(numOfPlayers);
         }
 
@@ -155,13 +158,29 @@ namespace TerminalMonopoly
             Player currentPlayer = players[currentPlayerNum];
             bool gameWon = false;
             int die1, die2;
+            string choice;
             Console.WriteLine(currentPlayer.Piece + " goes first!");
             while (!gameWon)
             {
-                Console.ReadLine();
-                die1 = rnd.Next(6)+1;
-                die2 = rnd.Next(6)+1;
-                Console.WriteLine(currentPlayer.Piece + " rolled " + die1 +" & "+ die2 + " = " + (die1 + die2));
+                Console.WriteLine(currentPlayer);
+                Console.WriteLine("R: roll, T: trade, M: manage properties.");
+                Console.Write("Please select an option: ");
+                choice = Console.ReadLine().ToUpper();
+                if (choice == string.Empty)
+                    choice = "R";
+                switch(choice[0])
+                {
+                    case 'T':
+                        Console.WriteLine("Trade is not yet implemented!");
+                        break;
+                    case 'M':
+                        Console.WriteLine("Property managment has not yet been implemented!");
+                        break;
+                        
+                }
+                die1 = rnd.Next(6) + 1;
+                die2 = rnd.Next(6) + 1;
+                Console.WriteLine(currentPlayer.Piece + " rolled " + die1 + " & " + die2 + " = " + (die1 + die2));
                 if (die1 == die2)
                 {
                     Console.WriteLine("Doubles!");
@@ -174,8 +193,9 @@ namespace TerminalMonopoly
                 {
                     currentPlayerNum++;
                 }
+                Console.WriteLine(currentPlayer);
                 currentPlayerNum++;
-                currentPlayerNum = currentPlayerNum % numOfPlayers;
+                currentPlayerNum %= numOfPlayers;
                 currentPlayer = players[currentPlayerNum];
             }
         }
@@ -189,7 +209,7 @@ namespace TerminalMonopoly
         }
         private void moveTo(Player player, string spaceID)
         {
-            int location = Array.IndexOf(board, spaceID);
+            int location = Array.IndexOf(Board, spaceID);
             int spacesToMove;
 
             if (location > player.Position)
@@ -205,7 +225,7 @@ namespace TerminalMonopoly
         }
         private void doAction(Player player, int diceAmount)
         {
-            Space currentSpace = spaces[board[player.Position]];
+            Space currentSpace = spaces[Board[player.Position]];
             string action = currentSpace.Action;
             switch(action)
             {
@@ -298,7 +318,7 @@ namespace TerminalMonopoly
         }
         private string nameOfPosition(Player player)
         {
-            return spaces[board[player.Position]].Name;
+            return spaces[Board[player.Position]].Name;
         }
     }
 }
