@@ -159,25 +159,32 @@ namespace TerminalMonopoly
             bool gameWon = false;
             int die1, die2;
             string choice;
-            Console.WriteLine(currentPlayer.Piece + " goes first!");
+            Console.WriteLine(currentPlayer.Piece + " goes first!\n");
             while (!gameWon)
             {
                 Console.WriteLine(currentPlayer);
-                Console.WriteLine("R: roll, T: trade, M: manage properties.");
-                Console.Write("Please select an option: ");
-                choice = Console.ReadLine().ToUpper();
-                if (choice == string.Empty)
-                    choice = "R";
-                switch(choice[0])
+                do
                 {
-                    case 'T':
-                        Console.WriteLine("Trade is not yet implemented!");
-                        break;
-                    case 'M':
-                        Console.WriteLine("Property managment has not yet been implemented!");
-                        break;
-                        
-                }
+                    Console.WriteLine("R: roll, T: trade, M: manage properties.");
+                    Console.Write("Please select an option:[R] ");
+                    choice = Console.ReadLine().ToUpper();
+                    if (choice == string.Empty)
+                        choice = "R";
+                    switch (choice[0])
+                    {
+                        case 'T':
+                            Console.WriteLine("Trade is not yet implemented!");
+                            break;
+                        case 'M':
+                            Console.WriteLine("Property managment has not yet been implemented!");
+                            break;
+                        case 'R':
+                            break;
+                        default:
+                            Console.WriteLine("Invalid option!");
+                            break;
+                    }
+                } while (choice[0] != 'R');
                 die1 = rnd.Next(6) + 1;
                 die2 = rnd.Next(6) + 1;
                 Console.WriteLine(currentPlayer.Piece + " rolled " + die1 + " & " + die2 + " = " + (die1 + die2));
@@ -196,7 +203,15 @@ namespace TerminalMonopoly
                 Console.WriteLine(currentPlayer);
                 currentPlayerNum++;
                 currentPlayerNum %= numOfPlayers;
-                currentPlayer = players[currentPlayerNum];
+                Console.WriteLine();
+                if (currentPlayer != players[currentPlayerNum])
+                {
+                    currentPlayer = players[currentPlayerNum];
+                    Console.WriteLine("Next player is " + currentPlayer.Piece + ".");
+                    Console.WriteLine(currentPlayer.Piece + " press enter to continue.");
+                    Console.ReadLine();
+                }
+                
             }
         }
         private void move(Player player, int amount)
@@ -247,7 +262,7 @@ namespace TerminalMonopoly
                     if (rentedUtility.OwnedBy != Player.None && rentedUtility.OwnedBy != player)
                     {
                         int urent;
-                        if (ownsGroup(rentedUtility.OwnedBy, currentSpace, "utilities"))
+                        if (ownsGroup(rentedUtility.OwnedBy, rentedUtility, "utilities") == 2)
                             urent = 10 * diceAmount;
                         else
                             urent = 4 * diceAmount;
@@ -260,13 +275,41 @@ namespace TerminalMonopoly
                         purchase(rentedUtility, player);
                     }
                     break;
+                case "rrrent":
+                    PaidSpace rentedRail = (PaidSpace)currentSpace;
+                    if (rentedRail.OwnedBy != Player.None && rentedRail.OwnedBy != player)
+                    {
+                        int urent;
+                        switch (ownsGroup(rentedRail.OwnedBy, rentedRail, "railroad"))
+                        {
+                            case 4:
+                                urent = 200;
+                                break;
+                            case 3:
+                                urent = 100;
+                                break;
+                            case 2:
+                                urent = 50;
+                                break;
+                            default:
+                                urent = 25;
+                                break;
+                        }
+                        player.takeMoney(urent);
 
+                        rentedRail.OwnedBy.addMoney(rentedRail.Price);
+                    }
+                    if (rentedRail.OwnedBy == Player.None)
+                    {
+                        purchase(rentedRail, player);
+                    }
+                    break;
             }
         }
-        private bool ownsGroup(Player player, Space currentSpace, string group)
+        private int ownsGroup(Player player, PaidSpace currentSpace, string group)
         {
             Queue<PaidSpace> inGroup = new Queue<PaidSpace>();
-
+            int count = 0;
             foreach (Space space in spaces.Values)
             {
                 switch(group)
@@ -289,15 +332,12 @@ namespace TerminalMonopoly
                         break;
                 }
             }
-            Player owner = inGroup.Dequeue().OwnedBy;
-            if (owner == Player.None)
-                return false;
             foreach(PaidSpace s in inGroup)
             {
-                if (owner != s.OwnedBy)
-                    return false;
+                if (player == s.OwnedBy)
+                    count++;
             }
-            return true;
+            return count;
         }
         private void purchase(PaidSpace space, Player player)
         {
