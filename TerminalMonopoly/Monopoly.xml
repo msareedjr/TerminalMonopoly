@@ -506,17 +506,17 @@
   </tiles>
   <chance>
     <title>Advance to Go (Collect $200)</title>
-    <action>move</action>
+    <action>moveto</action>
     <arg1>go</arg1>
   </chance>
   <chance>
     <title>Advance to Illinois Avenue - If you pass Go, collect $200</title>
-    <action>move</action>
+    <action>moveto</action>
     <arg1>illinoiseave</arg1>
   </chance>
   <chance>
     <title>Advance to St. Charles Place - If you pass Go, collect $200</title>
-    <action>move</action>
+    <action>moveto</action>
     <arg1>stcharlesplace</arg1>
   </chance>
   <chance>
@@ -548,7 +548,7 @@
   </chance>
   <chance>
     <title>Go Back 3 Spaces</title>
-    <action>moverelative</action>
+    <action>move</action>
     <arg1>-3</arg1>
   </chance>
   <chance>
@@ -568,12 +568,12 @@
   </chance>
   <chance>
     <title>Take a trip to Reading Railroad - If you pass Go, collect $200</title>
-    <action>move</action>
+    <action>moveto</action>
     <arg1>readingrailroad</arg1>
   </chance>
   <chance>
     <title>Advance to Boardwalk.</title>
-    <action>move</action>
+    <action>moveto</action>
     <arg1>boardwalk</arg1>
   </chance>
   <chance>
@@ -588,7 +588,7 @@
   </chance>
   <communitychest>
     <title>Advance to Go (Collect $200)</title>
-    <action>move</action>
+    <action>moveto</action>
     <arg1>go</arg1>
   </communitychest>
   <communitychest>

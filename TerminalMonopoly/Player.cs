@@ -11,12 +11,14 @@ namespace TerminalMonopoly
         private int money;
         private int id;
         private int position;
+        
 
         public Player(int idNum, String piece)
         {
             Piece = piece;
             money = 1500;
             id = idNum;
+            ownedProperties = new List<Property>();
         }
         public static Player None = new Player(-1, "none");
 
@@ -44,6 +46,10 @@ namespace TerminalMonopoly
             }
         }
         public bool Jailed { get; set; }
+        public List<Property> ownedProperties
+        {
+            get;
+        }
         public bool takeMoney(int amount)
         {
             if (amount < money)

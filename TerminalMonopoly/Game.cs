@@ -42,7 +42,7 @@ namespace TerminalMonopoly
             monopolyData.Load(xmlFileStream);
             Cards[] tmp1 = new Cards[16];
             Cards[] tmp2 = new Cards[16];
-            string[] pieces = { "Battleship", "Race Car", "Dog", "Cat", "Wheelbarrow", "Top Hat", "Thimble", "Shoe" };
+            string[] pieces = { "Battleship", "Race Car", "Dog", "Iron", "Wheelbarrow", "Top Hat", "Thimble", "Shoe" };
             
             int[] selectedPieces = new int[6];
             foreach (XmlNode currentNode in monopolyData.DocumentElement)
@@ -177,6 +177,7 @@ namespace TerminalMonopoly
                             break;
                         case 'M':
                             Console.WriteLine("Property managment has not yet been implemented!");
+                            listProperties(currentPlayer);
                             break;
                         case 'R':
                             break;
@@ -359,6 +360,10 @@ namespace TerminalMonopoly
         private string nameOfPosition(Player player)
         {
             return spaces[Board[player.Position]].Name;
+        }
+        private void listProperties(Player player)
+        {
+            
         }
     }
 }

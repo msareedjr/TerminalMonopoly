@@ -13,7 +13,7 @@ namespace TerminalMonopoly
         private int rent;
         private int[] multipliedRent;
         private int houseCost;
-        private string color;
+        private ConsoleColor color;
 
         public Property()
         {
@@ -34,7 +34,12 @@ namespace TerminalMonopoly
                     multipliedRent[i - 1] = Int32.Parse(node.InnerText);
                 }
                 houseCost = Int32.Parse(xmlNode.SelectSingleNode("housecost").InnerText);
-                color = xmlNode.SelectSingleNode("color").InnerText;
+                var colorstr = xmlNode.SelectSingleNode("color").InnerText;
+                switch (colorstr)
+                {
+                    case "brown":
+                        break;
+                }
             }
             catch
             {
@@ -49,7 +54,7 @@ namespace TerminalMonopoly
                 return houseCost;
             }
         }
-        public string Color
+        public ConsoleColor Color
         {
             get { return color; }
         }
