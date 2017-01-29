@@ -18,7 +18,7 @@ namespace TerminalMonopoly
             Piece = piece;
             money = 1500;
             id = idNum;
-            ownedProperties = new List<Property>();
+            ownedProperties = new List<PaidSpace>();
         }
         public static Player None = new Player(-1, "none");
 
@@ -46,7 +46,7 @@ namespace TerminalMonopoly
             }
         }
         public bool Jailed { get; set; }
-        public List<Property> ownedProperties
+        public List<PaidSpace> ownedProperties
         {
             get;
         }

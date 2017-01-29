@@ -363,7 +363,30 @@ namespace TerminalMonopoly
         }
         private void listProperties(Player player)
         {
-            
+            if (player.ownedProperties.Count > 0)
+            {
+                PaidSpace[] propertiesArray = player.ownedProperties.ToArray();
+                for (int i = 0; i < player.ownedProperties.Count; i += 2)
+                {
+                    switch(propertiesArray[i].Action)
+                    {
+                        case "rent":
+                            Console.ForegroundColor = ((Property)(propertiesArray[i])).Color;
+                            break;
+                        case "urent":
+                            Console.ForegroundColor = ConsoleColor.White;
+                            break;
+                        case "rrrent":
+                            Console.ForegroundColor = ConsoleColor.Gray;
+                            break;
+                    }
+                    Console.WriteLine(propertiesArray[i].Name);
+                }
+            }
+            else
+            {
+                Console.WriteLine(player.Piece + " does not own any properties!");
+            }
         }
     }
 }
